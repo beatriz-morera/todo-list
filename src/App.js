@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import Header from './components/Header';
+import Task from './components/Task';
+import AddTask from './components/AddTask';
+
+const App = () => {
+  const [tasks, setTasks] = useState([]);
+  const addTaskHandler = text => {
+    const newTasks = [...tasks, text];
+    setTasks(newTasks);
+  };
+
+  const removeTaskHandler = index => {
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+    setTasks(newTasks);
+  };
+
+  //const [taskCompleted, setTaskCompleted] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Header />
+      <AddTask onChange={addTaskHandler} />
+      <section>
+        {tasks.map((task, index) => (
+          <Task
+            task={task}
+            key={index}
+            remove={() => removeTaskHandler(index)}
+            //completed
+            //style={{ textDecoration: taskCompleted ? 'line-through' : '' }}
+          />
+        ))}
+      </section>
+    </main>
   );
-}
+};
 
 export default App;
