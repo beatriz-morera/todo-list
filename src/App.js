@@ -6,8 +6,9 @@ import AddTask from './components/AddTask';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+
   const addTaskHandler = text => {
-    const newTasks = [...tasks, text];
+    const newTasks = [...tasks, { text, completed: false }];
     setTasks(newTasks);
   };
 
@@ -17,7 +18,11 @@ const App = () => {
     setTasks(newTasks);
   };
 
-  //const [taskCompleted, setTaskCompleted] = useState(false);
+  const completedTaskHandler = index => {
+    const newTasks = [...tasks];
+    newTasks[index].completed = !newTasks[index].completed;
+    setTasks(newTasks);
+  };
 
   return (
     <main>
@@ -28,9 +33,8 @@ const App = () => {
           <Task
             task={task}
             key={index}
-            remove={() => removeTaskHandler(index)}
-            //completed
-            //style={{ textDecoration: taskCompleted ? 'line-through' : '' }}
+            onRemove={() => removeTaskHandler(index)}
+            onToggleComplete={() => completedTaskHandler(index)}
           />
         ))}
       </section>
