@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Header from './components/Header';
 import Task from './components/Task';
 import AddTask from './components/AddTask';
 
+import { useTasks } from './hooks';
+
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useTasks();
 
   const addTaskHandler = text => {
     const newTasks = [...tasks, { text, completed: false }];

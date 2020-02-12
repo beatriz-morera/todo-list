@@ -1,15 +1,7 @@
 import React from 'react';
 
 const Header = () => {
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
-  ];
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = [
     'January',
     'February',
@@ -31,7 +23,7 @@ const Header = () => {
   return (
     <div className="header">
       <h1 className="title">My Day</h1>
-      <p className="date">{day.slice(0, 3) + ' ' + monthDay + ' ' + month}</p>
+      <p className="date">{day + ' ' + monthDay + ' ' + month}</p>
     </div>
   );
 };
