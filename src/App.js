@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './components/Header';
@@ -11,17 +11,21 @@ const App = () => {
   const dispatch = useDispatch();
   const todos = useSelector(selectTodos);
 
+  const addTaskHandler = useCallback(text => dispatch(add(text)), [dispatch]);
+  const removeTaskHandler = useCallback(task => dispatch(remove(task)), [dispatch]);
+  const toggleTaskHandler = useCallback(task => dispatch(toggle(task)), [dispatch]);
+
   return (
     <main>
       <Header />
-      <AddTask onChange={text => dispatch(add(text))} />
+      <AddTask onChange={addTaskHandler} />
       <section>
         {todos.map((todo, id) => (
           <Task
             task={todo}
             key={id}
-            onRemove={() => dispatch(remove(todo))}
-            onToggleComplete={() => dispatch(toggle(todo))}
+            onRemove={removeTaskHandler}
+            onToggleComplete={toggleTaskHandler}
           />
         ))}
       </section>
