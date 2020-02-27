@@ -1,42 +1,27 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './components/Header';
 import Task from './components/Task';
 import AddTask from './components/AddTask';
 
-import { useTasks } from './hooks';
+import { add, remove, toggle, selectTodos } from './features/todos/todosSlice';
 
 const App = () => {
-  const [tasks, setTasks] = useTasks();
-
-  const addTaskHandler = text => {
-    const newTasks = [...tasks, { text, completed: false }];
-    setTasks(newTasks);
-  };
-
-  const removeTaskHandler = index => {
-    const newTasks = [...tasks];
-    newTasks.splice(index, 1);
-    setTasks(newTasks);
-  };
-
-  const completedTaskHandler = index => {
-    const newTasks = [...tasks];
-    newTasks[index].completed = !newTasks[index].completed;
-    setTasks(newTasks);
-  };
+  const dispatch = useDispatch();
+  const todos = useSelector(selectTodos);
 
   return (
     <main>
       <Header />
-      <AddTask onChange={addTaskHandler} />
+      <AddTask onChange={text => dispatch(add(text))} />
       <section>
-        {tasks.map((task, index) => (
+        {todos.map((todo, id) => (
           <Task
-            task={task}
-            key={index}
-            onRemove={() => removeTaskHandler(index)}
-            onToggleComplete={() => completedTaskHandler(index)}
+            task={todo}
+            key={id}
+            onRemove={() => dispatch(remove(todo))}
+            onToggleComplete={() => dispatch(toggle(todo))}
           />
         ))}
       </section>

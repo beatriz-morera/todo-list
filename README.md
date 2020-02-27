@@ -1,6 +1,20 @@
 ## todo-list
 
+React todo list app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+**features**
+
+- [x] antd design components
+- [x] react hooks
+- [x] redux(toolkit)
+- [x] local storage
+
+## Demo Page
+
+You can check the project running at:
+[https://beatriz-morera.github.io/todo-list/](https://beatriz-morera.github.io/todo-list/)
 
 ## Available Scripts
 

@@ -17,11 +17,11 @@ const Task = ({ onToggleComplete, task, onRemove }) => {
 
   return (
     <div className="task-container">
-      <Checkbox onChange={changeHandler} checked={task.completed} />
+      <Checkbox onChange={changeHandler} checked={task.isCompleted} />
       <div className="task">
         <h4
           className="task-description"
-          style={{ textDecoration: task.completed ? 'line-through' : '' }}
+          style={{ textDecoration: task.isCompleted ? 'line-through' : '' }}
         >
           {task.text}
         </h4>
