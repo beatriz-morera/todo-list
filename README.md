@@ -1,6 +1,6 @@
-## todo-list
+## My Day
 
-React todo list app
+React todo list
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
